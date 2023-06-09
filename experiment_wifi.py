@@ -14,9 +14,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         message = self.rfile.read(content_length).decode('utf-8')
-
         # Process the message as needed
-        print(message)
         if experiment.do_experiment:
             experiment.write_to_file(message)
 

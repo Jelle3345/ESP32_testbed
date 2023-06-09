@@ -19,7 +19,8 @@ class Experiment:
         mode = string_array[1]
         mac = string_array[2].replace(":", "_")
         file = open(f'{self.experiments_path}/{self.experiment_num}/{mac}_{mode}.csv', 'a')
-        file.write(f'{self.experiment_num},{time.time()},{string}')
+        for string_part in string.splitlines():
+            file.write(f'{self.experiment_num},{time.time()},{string_part}\n')
 
     def stop_start_experiment(self):
         if not self.do_experiment:  # so start an experiment
