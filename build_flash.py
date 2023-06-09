@@ -16,9 +16,10 @@ def build_flash(port, mode):
     for line in process.stdout:
         try:  # some output is not utf-8
             string = line.decode('utf-8').replace("\n", "")
+            print(f'{port},{string}')
+
         except:
             pass
-            print(f'{port},{string}')
 
 
 def build_flash_nodes(nodes):
@@ -32,14 +33,9 @@ def build_flash_nodes(nodes):
         thread.join()
 
 
-# active_ap, active_sta, passive
 if __name__ == '__main__':
-
+    # active_ap, active_sta, passive
     nodes = [  # pos1 is port and can be empty for auto assignment
-        # ("", "passive"),
-        ("COM4", "active_ap"),
-        # ("", "active_sta"),
+        ("COM6", "active_sta"),
     ]
     build_flash_nodes(nodes)
-
-

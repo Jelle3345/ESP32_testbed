@@ -1,6 +1,8 @@
 import time
 import os
 
+import keyboard
+
 
 class Experiment:
     do_experiment = False
@@ -9,12 +11,13 @@ class Experiment:
 
     def __init__(self):
         self.experiments_path = f'experiments/{(int(max(os.listdir("experiments"), default=0)) + 1)}'
+        os.mkdir(self.experiments_path)
+        keyboard.on_release_key("num_lock", lambda _: self.stop_start_experiment())
 
     def write_to_file(self, string):
         string_array = string.split(',')
         mode = string_array[1]
-        mac = string_array[2]
-        print(f'{self.experiment_num},{time.time()},{string}')
+        mac = string_array[2].replace(":", "_")
         file = open(f'{self.experiments_path}/{self.experiment_num}/{mac}_{mode}.csv', 'a')
         file.write(f'{self.experiment_num},{time.time()},{string}')
 
