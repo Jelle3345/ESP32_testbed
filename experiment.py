@@ -10,7 +10,7 @@ class Experiment:
     experiment_num = 0
 
     def __init__(self):
-        self.experiments_path = f'experiments/{(int(max(os.listdir("experiments"), default=0)) + 1)}'
+        self.experiments_path = f'experiments/{(max([eval(x) for x in os.listdir("experiments")], default=0) + 1)}'
         os.mkdir(self.experiments_path)
         keyboard.on_release_key("num_lock", lambda _: self.stop_start_experiment())
 

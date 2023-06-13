@@ -1,4 +1,17 @@
-15 sec 10 hz serial
-15 sec 20 hz serial
-15 sec 40 hz serial
+1 15 sec 10 hz serial
+2 15 sec 20 hz serial
+3 15 sec 40 hz serial
+13 15 sec 60 hz serial does not work but higher than wifi
+14 15 sec 80 hz serial
+16 15 sec 100 hz serial
+17 15 sec 120 hz serial
 
+
+5 15 sec 10 hz wifi
+6 15 sec 20 hz wifi 8 only
+7 15 sec 20 hz wifi 9 feedback
+8 15 sec 40 hz wifi seems to work still
+9 15 sec 80 hz wifi does not work anymore
+10 15 sec 120 hz wifi hopeless even less data
+11 15 sec 60 hz wifi does not work anymore
+12 15 sec 100 hz wifi hopeless
