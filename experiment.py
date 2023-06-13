@@ -16,8 +16,8 @@ class Experiment:
 
     def write_to_file(self, string):
         string_array = string.split(',')
-        mode = string_array[1]
-        mac = string_array[2].replace(":", "_")
+        mode = string_array[2]
+        mac = string_array[3].replace(":", "_")
         file = open(f'{self.experiments_path}/{self.experiment_num}/{mac}_{mode}.csv', 'a')
         for string_part in string.splitlines():
             file.write(f'{self.experiment_num},{time.time()},{string_part}\n')

@@ -28,7 +28,7 @@ def build_flash_nodes(nodes):
         thread = threading.Thread(target=build_flash, args=[node[0], node[1]], daemon=True)
         thread.start()
         node_threads.append(thread)
-        time.sleep(2)  # to fix the startup .bat file being used by the other thread
+        time.sleep(3)  # to fix the startup .bat file being used by the other thread
     for thread in node_threads:
         thread.join()
 
@@ -36,6 +36,14 @@ def build_flash_nodes(nodes):
 if __name__ == '__main__':
     # active_ap, active_sta, passive
     nodes = [  # pos1 is port and can be empty for auto assignment
-        ("COM6", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
+        ("", "active_sta"),
     ]
     build_flash_nodes(nodes)

@@ -1,0 +1,4 @@
+15 sec 10 hz serial
+15 sec 20 hz serial
+15 sec 40 hz serial
+

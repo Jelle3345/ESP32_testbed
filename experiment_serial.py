@@ -41,6 +41,14 @@ if __name__ == '__main__':
     print("make sure Send CSI data over WiFi is disabled for best results")
     experiment = Experiment()
     node_ports = [  # leave empty string for auto assignment
-        "COM4",
+        "COM8",
+        "COM9",
+        "COM10",
+        "COM13",
+        "COM14",
+        "COM26",
+        "COM27",
+        "COM28",
+        "COM29",
     ]
     monitor_nodes(node_ports)
