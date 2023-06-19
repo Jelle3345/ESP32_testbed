@@ -1,3 +1,4 @@
+9 sta 1 ap
 1 15 sec 10 hz serial
 2 15 sec 20 hz serial
 3 15 sec 40 hz serial
@@ -5,7 +6,6 @@
 14 15 sec 80 hz serial
 16 15 sec 100 hz serial
 17 15 sec 120 hz serial
-
 
 5 15 sec 10 hz wifi
 6 15 sec 20 hz wifi 8 only
@@ -15,3 +15,36 @@
 10 15 sec 120 hz wifi hopeless even less data
 11 15 sec 60 hz wifi does not work anymore
 12 15 sec 100 hz wifi hopeless
+
+
+serial
+18 15 sec 120 hz 3 nodes 2 sta 1 ap
+19 15 sec 120 hz 2 nodes 1 sta 1 ap
+20 15 sec 10 hz 3 nodes
+21 15 sec 10 hz 2 nodes
+22 15 sec 80 hz 3 nodes
+23 15 sec 80 hz 2 nodes
+24 15 sec 60 hz 3 nodes
+25 15 sec 60 hz 2 nodes
+26 15 sec 100 hz 3 nodes
+27 15 sec 100 hz 2 nodes
+28 15 sec 40 hz 3 nodes
+29 15 sec 40 hz 2 nodes
+30 15 sec 20 hz 3 nodes
+31 15 sec 20 hz 2 nodes
+
+wifi
+32 15 sec 10 hz 3 nodes
+33 15 sec 10 hz 2 nodes
+34 15 sec 20 hz 3 nodes
+35 15 sec 20 hz 2 nodes
+36 15 sec 40 hz 3 nodes
+37 15 sec 40 hz 2 nodes
+38 15 sec 60 hz 3 nodes
+39 15 sec 60 hz 2 nodes
+40 15 sec 80 hz 3 nodes
+41 15 sec 80 hz 2 nodes
+42 15 sec 100 hz 3 nodes
+43 15 sec 100 hz 2 nodes
+44 15 sec 120 hz 3 nodes
+45 15 sec 120 hz 2 nodes

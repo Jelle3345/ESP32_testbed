@@ -46,16 +46,10 @@ def build_flash_nodes(nodes):
 
 
 if __name__ == '__main__':
+    # todo add check for success on all nodes
     # active_ap, active_sta, passive
     nodes = [  # pos1 is port and can be empty for auto assignment
-        ("COM8", "active_sta"),
-        ("COM9", "active_sta"),
-        ("COM10", "active_sta"),
-        ("COM13", "active_sta"),
-        ("COM14", "active_sta"),
-        ("COM26", "active_sta"),
         ("COM27", "active_sta"),
         ("COM28", "active_sta"),
-        ("COM29", "active_sta"),
     ]
     build_flash_nodes(nodes)
