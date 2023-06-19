@@ -1,7 +1,8 @@
+import pandas
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
-
+import numpy as np
 
 # transfer_type, experiment_number, hz_setting, station_amount
 experiments_array = [
@@ -57,21 +58,48 @@ experiments_array = [
 serial_results = []
 wifi_results = []
 
-all_results = pd.DataFrame(columns=['station_amount', 'transfer_type', 'hz_setting', 'hz_actual'])
-
+all_results = pd.DataFrame(columns=[
+    'station_amount',
+    'transfer_type',
+    'hz_setting',
+    'hz_actual',
+    'expected_time_between_packets',
+    'mean_time_between_packets',
+    'CV_time_between_packets'
+])
 
 for experiment in experiments_array:
 
     result_amounts = []
+    time_between_packets = []
 
     for file_name in os.listdir(f"experiments/{experiment[1]}/1"):
         if "bad_" not in file_name:
             df = pd.read_csv(f'experiments/{experiment[1]}/1/{file_name}', header=None)
+            times = df.iloc[:, 22] / 1000000  # convert from microseconds to seconds
+            time_diffs = times.diff().dropna()
+
+            time_between_packets.extend(time_diffs.tolist())
             result_amounts.append(df.shape[0])
 
-    list_row = [experiment[3], experiment[0], experiment[2], sum(result_amounts)/len(result_amounts)/15]
+    np_array = np.array(time_between_packets)
+    mean = np.mean(np_array)
+    std = np.std(np_array)
+    cv_normalized = (std / mean)
+
+    list_row = [
+        experiment[3],
+        experiment[0],
+        experiment[2],
+        round(sum(result_amounts) / len(result_amounts) / 15, 4),
+        round(1 / int(experiment[2]), 4),
+        mean,
+        cv_normalized
+    ]
+
     all_results.loc[len(all_results)] = list_row
 
+plt.show()
 all_results = all_results.sort_values(by='hz_setting')
 print(all_results)
 
