@@ -65,22 +65,33 @@ all_results = pd.DataFrame(columns=[
     'hz_actual',
     'expected_time_between_packets',
     'mean_time_between_packets',
-    'CV_time_between_packets'
+    'CV_time_between_packets',
+    'data_lost',
+    'transmission_ratio'
 ])
 
 for experiment in experiments_array:
 
     result_amounts = []
     time_between_packets = []
+    CSI_lost_amounts = []
+    CSI_transmission_ratio = []
 
     for file_name in os.listdir(f"experiments/{experiment[1]}/1"):
         if "bad_" not in file_name:
             df = pd.read_csv(f'experiments/{experiment[1]}/1/{file_name}', header=None)
+            data_amount = df.shape[0]
             times = df.iloc[:, 22] / 1000000  # convert from microseconds to seconds
             time_diffs = times.diff().dropna()
 
+            CSI_numbers = times = df.iloc[:, 3]
+            CSI_total_amount = CSI_numbers.max() - CSI_numbers.min() + 1
+            amount_lost = CSI_total_amount - data_amount
+
             time_between_packets.extend(time_diffs.tolist())
-            result_amounts.append(df.shape[0])
+            result_amounts.append(data_amount)
+            CSI_lost_amounts.append(amount_lost)
+            CSI_transmission_ratio.append((data_amount - amount_lost) / data_amount)
 
     np_array = np.array(time_between_packets)
     mean = np.mean(np_array)
@@ -94,7 +105,9 @@ for experiment in experiments_array:
         round(sum(result_amounts) / len(result_amounts) / 15, 4),
         round(1 / int(experiment[2]), 4),
         mean,
-        cv_normalized
+        cv_normalized,
+        round(sum(CSI_lost_amounts) / len(CSI_lost_amounts), 4),
+        round(sum(CSI_transmission_ratio) / len(CSI_transmission_ratio), 4),
     ]
 
     all_results.loc[len(all_results)] = list_row
@@ -104,4 +117,3 @@ all_results = all_results.sort_values(by='hz_setting')
 print(all_results)
 
 all_results.to_csv('results.csv', index=False)
-
